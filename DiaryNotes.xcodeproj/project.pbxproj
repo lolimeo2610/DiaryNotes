@@ -8,22 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		25A8DB711EC34E8F0061AAC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB701EC34E8F0061AAC5 /* AppDelegate.swift */; };
-		25A8DB731EC34E8F0061AAC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB721EC34E8F0061AAC5 /* ViewController.swift */; };
 		25A8DB761EC34E8F0061AAC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25A8DB741EC34E8F0061AAC5 /* Main.storyboard */; };
 		25A8DB791EC34E900061AAC5 /* DiaryNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB771EC34E900061AAC5 /* DiaryNotes.xcdatamodeld */; };
 		25A8DB7B1EC34E900061AAC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A8DB7A1EC34E900061AAC5 /* Assets.xcassets */; };
 		25A8DB7E1EC34E900061AAC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25A8DB7C1EC34E900061AAC5 /* LaunchScreen.storyboard */; };
+		25A8DB861EC572900061AAC5 /* MainTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB851EC572900061AAC5 /* MainTableVC.swift */; };
+		25A8DB881EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB871EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		25A8DB6D1EC34E8F0061AAC5 /* DiaryNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiaryNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A8DB701EC34E8F0061AAC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		25A8DB721EC34E8F0061AAC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		25A8DB751EC34E8F0061AAC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		25A8DB781EC34E900061AAC5 /* DiaryNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DiaryNotes.xcdatamodel; sourceTree = "<group>"; };
 		25A8DB7A1EC34E900061AAC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25A8DB7D1EC34E900061AAC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25A8DB7F1EC34E900061AAC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25A8DB851EC572900061AAC5 /* MainTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableVC.swift; sourceTree = "<group>"; };
+		25A8DB871EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSubModuleTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				25A8DB701EC34E8F0061AAC5 /* AppDelegate.swift */,
-				25A8DB721EC34E8F0061AAC5 /* ViewController.swift */,
+				25A8DB851EC572900061AAC5 /* MainTableVC.swift */,
+				25A8DB871EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift */,
 				25A8DB741EC34E8F0061AAC5 /* Main.storyboard */,
 				25A8DB7A1EC34E900061AAC5 /* Assets.xcassets */,
 				25A8DB7C1EC34E900061AAC5 /* LaunchScreen.storyboard */,
@@ -141,7 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A8DB791EC34E900061AAC5 /* DiaryNotes.xcdatamodeld in Sources */,
-				25A8DB731EC34E8F0061AAC5 /* ViewController.swift in Sources */,
+				25A8DB861EC572900061AAC5 /* MainTableVC.swift in Sources */,
+				25A8DB881EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift in Sources */,
 				25A8DB711EC34E8F0061AAC5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
