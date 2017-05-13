@@ -30,9 +30,15 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     //variable for arrays store file
     var noteDiary = [Diary]()
     
+
     
     
+    //essential thing for core data
     var managedObjectContext:NSManagedObjectContext!
+    
+    
+    
+    
     //--------
     
   
@@ -42,8 +48,9 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
         
-    
+        
     //code start
     //we can add icon to our navigaiton title. like this code bellow here.
        // let iconImageView = UIImageView(image: UIImage(named: "Pic1"))
@@ -63,6 +70,22 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
         
     }
 
+    //view will appear
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        //background image variables
+        let backgroundImage = UIImage(named: "background1.jpg")
+        //add background for the view controller
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+    
+        //no lines where there aren't cells to show
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        //center and scale background image
+        imageView.contentMode = .scaleAspectFill
+    }
     
     //extra function for core data user
     
@@ -117,7 +140,7 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
         let noteItems = noteDiary[indexPath.row]
         
         //check if our image is available?
-        if let diaryImage = UIImage(data: noteItems.noteImage as! Data) {
+        if let diaryImage = UIImage(data: noteItems.noteImage! as Data) {
             
             cell.backgroundImageView.image = diaryImage
 
