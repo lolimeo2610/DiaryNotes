@@ -14,6 +14,9 @@
 		25A8DB7E1EC34E900061AAC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25A8DB7C1EC34E900061AAC5 /* LaunchScreen.storyboard */; };
 		25A8DB861EC572900061AAC5 /* MainTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB851EC572900061AAC5 /* MainTableVC.swift */; };
 		25A8DB881EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB871EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift */; };
+		25A8DB8B1EC744790061AAC5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A8DB8A1EC744790061AAC5 /* CoreLocation.framework */; };
+		25A8DB8D1EC745090061AAC5 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB8C1EC745090061AAC5 /* LocationViewController.swift */; };
+		25A8DB8F1EC81E9B0061AAC5 /* DiaryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A8DB8E1EC81E9B0061AAC5 /* DiaryDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		25A8DB7F1EC34E900061AAC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25A8DB851EC572900061AAC5 /* MainTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableVC.swift; sourceTree = "<group>"; };
 		25A8DB871EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSubModuleTableViewCell.swift; sourceTree = "<group>"; };
+		25A8DB8A1EC744790061AAC5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		25A8DB8C1EC745090061AAC5 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		25A8DB8E1EC81E9B0061AAC5 /* DiaryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A8DB8B1EC744790061AAC5 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +51,7 @@
 			children = (
 				25A8DB6F1EC34E8F0061AAC5 /* DiaryNotes */,
 				25A8DB6E1EC34E8F0061AAC5 /* Products */,
+				25A8DB891EC744790061AAC5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +69,8 @@
 				25A8DB701EC34E8F0061AAC5 /* AppDelegate.swift */,
 				25A8DB851EC572900061AAC5 /* MainTableVC.swift */,
 				25A8DB871EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift */,
+				25A8DB8C1EC745090061AAC5 /* LocationViewController.swift */,
+				25A8DB8E1EC81E9B0061AAC5 /* DiaryDetailViewController.swift */,
 				25A8DB741EC34E8F0061AAC5 /* Main.storyboard */,
 				25A8DB7A1EC34E900061AAC5 /* Assets.xcassets */,
 				25A8DB7C1EC34E900061AAC5 /* LaunchScreen.storyboard */,
@@ -68,6 +78,14 @@
 				25A8DB771EC34E900061AAC5 /* DiaryNotes.xcdatamodeld */,
 			);
 			path = DiaryNotes;
+			sourceTree = "<group>";
+		};
+		25A8DB891EC744790061AAC5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				25A8DB8A1EC744790061AAC5 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +132,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 25A8DB641EC34E8F0061AAC5;
 			productRefGroup = 25A8DB6E1EC34E8F0061AAC5 /* Products */;
@@ -143,6 +162,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A8DB8D1EC745090061AAC5 /* LocationViewController.swift in Sources */,
+				25A8DB8F1EC81E9B0061AAC5 /* DiaryDetailViewController.swift in Sources */,
 				25A8DB791EC34E900061AAC5 /* DiaryNotes.xcdatamodeld in Sources */,
 				25A8DB861EC572900061AAC5 /* MainTableVC.swift in Sources */,
 				25A8DB881EC5737B0061AAC5 /* MainSubModuleTableViewCell.swift in Sources */,
@@ -310,6 +331,7 @@
 				25A8DB841EC34E900061AAC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

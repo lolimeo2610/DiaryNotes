@@ -27,6 +27,13 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     
     ]
     */
+    
+    //some outlet for decorating
+    @IBOutlet weak var diaryTitle: UITextField!
+    
+    var eDiaryName = String()
+    
+    
     //variable for arrays store file
     var noteDiary = [Diary]()
     
@@ -41,7 +48,55 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     
     //--------
     
-  
+  //change diary title
+    
+   
+    func changeTitleDiary()
+    {
+        
+       eDiaryName = diaryTitle.text!
+        
+        
+        let inputAlert = UIAlertController(title: "Change diary name", message: "Have to restart the app to take effect!", preferredStyle: .alert)
+        
+        inputAlert.addTextField { (textfield: UITextField) in
+            textfield.placeholder = "your diary name..."
+        }
+        
+        inputAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: { (action) in
+            
+            let diaryNoteName = inputAlert.textFields?.first
+            
+            if diaryNoteName?.text != nil {
+                
+                self.eDiaryName = (diaryNoteName?.text)!
+                
+                UserDefaults.standard.set(self.eDiaryName, forKey: "myDiaryname")
+
+                self.diaryTitle.text = self.eDiaryName
+                
+            }
+        }))
+        
+        inputAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(inputAlert, animated: true, completion: nil)
+        
+        
+        //finishing the text
+        
+        //user default standard to save the name
+      //  diaryTitle.text = ""
+        
+          }
+    //edit title button
+    
+    @IBAction func editTitleAction(_ sender: Any) {
+        
+        changeTitleDiary()
+    }
+    
+    
     //how to load data after we do input function successed
     
     
@@ -70,6 +125,19 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
         
     }
 
+    
+    //view did appear
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if let x = UserDefaults.standard.object(forKey: "myDiaryname") as? String {
+            self.diaryTitle.text = x
+        }
+    }
+    
+    
+    
+    
     //view will appear
     override func viewWillAppear(_ animated: Bool) {
         
@@ -114,6 +182,27 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
 
     // MARK: - Table view data source
 
+    
+    
+    //table view edting syle
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            managedObjectContext.delete(noteDiary[indexPath.row])
+            
+            do {
+                try self.managedObjectContext.save()
+                
+                self.loadData()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
+        }
+    }
+    
+    
+    
     //have to force our height = 150 pixel not less
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
@@ -140,18 +229,27 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
         let noteItems = noteDiary[indexPath.row]
         
         //check if our image is available?
-        if let diaryImage = UIImage(data: noteItems.noteImage! as Data) {
-            
-            cell.backgroundImageView.image = diaryImage
-
-        }
+      
+      if   let ourImage = UIImage(data: noteItems.noteImage! as Data)
+        
+      {    cell.backgroundImageView.image = ourImage }
+        
+//loadData()
+     
         
         
         cell.nameModuleLabel.text = noteItems.noteName
         cell.subModuleLabel.text = noteItems.subNoteName
         //here we show the first one
+     
+        //only open the below function loaddata to get in safe mode and reset data. its bug sometimes. i still work on fixing that at the moment.
         
+   //  loadData()
+
         return cell
+        
+
+
     }
  
     
@@ -171,14 +269,20 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
 //according to addNotes func
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         
+        picker.dismiss(animated: true, completion: nil)
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
             //so we got the image from library, now we need to add the title and sub text as well
-            picker.dismiss(animated: true, completion: { 
+            
+            picker.dismiss(animated: true, completion: {
+                
                 self.createNoteItem(with: image)
+                
             })
             
             
@@ -204,7 +308,7 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
             textfield.placeholder = "subNoteName"
         }
         
-        inputAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: {(action:UIAlertAction) in
+        inputAlert.addAction(UIAlertAction(title: "Save", style: .default, handler: {(action: UIAlertAction) in
        
         let noteNameTextField = inputAlert.textFields?.first
         let subNoteTextField = inputAlert.textFields?.last
@@ -232,12 +336,50 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
         }))
         
         inputAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
         self.present(inputAlert, animated: true, completion: nil)
             
             //cancel alert button.
         }
     
-
+//bookmark button stand for deleta all the data, will be more function inside there. but now i can do it simple atm
+    @IBAction func resetActionButton(_ sender: Any) {
+        
+        //alert controller now 
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let resetAction = UIAlertAction(title: "Reset Diary", style: .default) { (action) in
+            
+            //action of reset data function put here
+            self.resetAllData()
+        }
+        
+        let cancelAction = UIAlertAction (title: "Cancel", style: .cancel, handler: nil)
+        
+        //finialize the action of controller
+        alertController.addAction(resetAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController,animated: true,completion: nil)
+        
+        
+    }
+    
+    func resetAllData() {
+        //get entity name in our coredata first indetify stage
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Diary")
+        let request = NSBatchDeleteRequest(fetchRequest: fetch)
+        
+        do {
+            try managedObjectContext.execute(request)
+        try managedObjectContext.save()
+            
+        } catch {
+            print ("There was an error")
+        }
+        
+        self.loadData()
+    }
 
     
     
@@ -252,17 +394,7 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     }
     */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -279,14 +411,34 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
+    var selectedData : Diary?
+    var indexRow = Int()
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "sendSegue" {
+
+            let detailVC = segue.destination as! DiaryDetailViewController
+            detailVC.gotData = (selectedData?.subNoteName)!
+            detailVC.cellIndex = indexRow //row number 1,2,3...
+            
+        }
     }
-    */
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        selectedData = noteDiary[indexPath.row]
+        indexRow = Int(indexPath.row)
+        
+        performSegue(withIdentifier: "sendSegue", sender: self)
+    }
+    
 
 }
