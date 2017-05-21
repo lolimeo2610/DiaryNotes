@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import AVFoundation
 
 class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -48,11 +48,36 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     
     //--------
     
+    
+    var FXplayer = AVAudioPlayer()
+    
+    //play sound effec on button
+    func soundFX(){
+    
+        do {
+            FXplayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Click", ofType: "mp3")!))
+            
+            FXplayer.prepareToPlay()
+            
+        } catch {
+            print(error)
+        }
+        
+    }
+    //play function
+    
+    func FXplayed() {
+        FXplayer.play()
+    }
+    
+    
   //change diary title
     
    
     func changeTitleDiary()
     {
+        
+        FXplayed()
         
        eDiaryName = diaryTitle.text!
         
@@ -103,8 +128,8 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
-        
+      //prepare sound to play anytime
+        soundFX()
         
     //code start
     //we can add icon to our navigaiton title. like this code bellow here.
@@ -256,6 +281,8 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     //extra function button
     @IBAction func addNotes(_ sender: Any) {
         
+        FXplayed()
+        
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
@@ -291,6 +318,8 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     
     //we use entity created in core data to get datae asiyly
     func createNoteItem (with image:UIImage) {
+        
+        FXplayed()
         
         
         let noteItem = Diary(context: managedObjectContext)
@@ -345,6 +374,8 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
 //bookmark button stand for deleta all the data, will be more function inside there. but now i can do it simple atm
     @IBAction func resetActionButton(_ sender: Any) {
         
+        FXplayed()
+        
         //alert controller now 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -366,6 +397,9 @@ class MainTableVC: UITableViewController, UIImagePickerControllerDelegate, UINav
     }
     
     func resetAllData() {
+        
+        FXplayed()
+        
         //get entity name in our coredata first indetify stage
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Diary")
         let request = NSBatchDeleteRequest(fetchRequest: fetch)

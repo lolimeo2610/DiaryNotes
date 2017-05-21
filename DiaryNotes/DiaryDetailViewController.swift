@@ -90,6 +90,9 @@ class DiaryDetailViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     @IBAction func addAction(_ sender: Any) {
         
+        
+        
+        
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
